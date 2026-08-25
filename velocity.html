@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Velocity Half · Godspeed Mode</title>
+  <meta name="description" content="Iteration at speed: cheap stubs, catalog bootstrap, parallel variants, and auto-recording.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#070d10">
+  <meta name="color-scheme" content="dark">
+  <link rel="canonical" href="https://veigapunk.github.io/godspeed-core/velocity.html">
+  <meta property="og:title" content="Velocity Half · Godspeed Mode">
+  <meta property="og:description" content="Iteration at speed: cheap stubs, catalog bootstrap, parallel variants, and auto-recording.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://veigapunk.github.io/godspeed-core/velocity.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Velocity Half · Godspeed Mode">
+  <meta name="twitter:description" content="Iteration at speed: cheap stubs, catalog bootstrap, parallel variants, and auto-recording.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%A1%3C/text%3E%3C/svg%3E">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #070d10;
+      --panel: #0e171c;
+      --text: #c8d6db;
+      --muted: #8aa1a8;
+      --bright: #e8f1f4;
+      --accent: #5eb8b0;
+      --accent-2: #b9a0f2;
+      --rule: #14242b;
+      --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --font-sans: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --max-w: 44rem;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.65;
+      font-size: clamp(0.95rem, 0.9rem + 0.25vw, 1.05rem);
+    }
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      z-index: 100;
+      padding: 0.5rem 1rem;
+      background: var(--accent);
+      color: var(--bg);
+      text-decoration: none;
+      font-family: var(--font-mono);
+    }
+    .skip-link:focus { left: 1rem; top: 1rem; }
+    header, main, footer { padding: 1.25rem; }
+    .wrap { max-width: var(--max-w); margin: 0 auto; }
+    header .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .brand {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--bright);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      font-size: 1.1rem;
+    }
+    .brand span { color: var(--accent); }
+    nav { display: flex; gap: 1rem; flex-wrap: wrap; }
+    nav a { color: var(--muted); text-decoration: none; font-size: 0.9rem; }
+    nav a:hover { color: var(--accent); }
+    main .wrap {
+      background: var(--panel);
+      padding: clamp(1.25rem, 4vw, 2rem);
+      border-radius: 0.75rem;
+      border: 1px solid var(--rule);
+    }
+    h1, h2, h3, h4 { color: var(--bright); line-height: 1.25; margin-top: 1.8rem; margin-bottom: 0.75rem; }
+    h1 { font-size: clamp(1.8rem, 6vw, 2.75rem); margin-top: 0; }
+    h2 { font-size: clamp(1.25rem, 4vw, 1.5rem); }
+    h3 { font-size: 1.15rem; }
+    .lede { font-size: 1.1rem; color: var(--muted); max-width: 60ch; }
+    a { color: var(--accent); }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    code, pre { font-family: var(--font-mono); font-size: 0.9em; }
+    code { background: var(--rule); padding: 0.15rem 0.35rem; border-radius: 0.25rem; }
+    pre {
+      background: var(--rule);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    ul, ol { padding-left: 1.25rem; }
+    li { margin: 0.35rem 0; }
+    blockquote {
+      border-left: 3px solid var(--accent);
+      margin: 1rem 0;
+      padding: 0.25rem 0 0.25rem 1rem;
+      color: var(--muted);
+    }
+    hr { border: 0; border-top: 1px solid var(--rule); margin: 2rem 0; }
+    .cta { margin-top: 1.5rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.6rem 1rem;
+      border-radius: 0.4rem;
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      min-height: 44px;
+    }
+    .btn-primary { background: var(--accent); color: var(--bg); }
+    .btn-ghost { border: 1px solid var(--muted); color: var(--muted); }
+    footer { color: var(--muted); font-size: 0.85rem; text-align: center; }
+    table { border-collapse: collapse; margin: 1rem 0; width: 100%; }
+    th, td { border: 1px solid var(--rule); padding: 0.5rem; text-align: left; }
+    th { color: var(--bright); background: var(--rule); }
+    @media (max-width: 480px) {
+      header .wrap { flex-direction: column; align-items: flex-start; }
+      nav { gap: 0.75rem; }
+      main .wrap { padding: 1.25rem; }
+      h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header>
+    <div class="wrap">
+      <a class="brand" href="./">godspeed<span>/core</span></a>
+      <nav aria-label="Primary">
+        <a href="directive.html">Directive</a>
+        <a href="filter.html">Filter</a>
+        <a href="velocity.html">Velocity</a>
+        <a href="https://github.com/VeigaPunk/godspeed-core" rel="noopener noreferrer" target="_blank">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+    <div class="wrap">
+<h1 id="velocity-half-iteration-at-speed">Velocity Half — Iteration at Speed</h1>
+<blockquote>
+<p>Origin: godspeed-mode handoff summary (2026-04-08), attack-loop spec for AutoAgent.</p>
+</blockquote>
+<h2 id="core-principle">Core principle</h2>
+<p>Cheap stubs over expensive perfection. Catalog bootstrap before generative search. Parallel over serial. Auto-record everything.</p>
+<h2 id="godspeed-properties">Godspeed properties</h2>
+<ol>
+<li>
+<p><strong>Catalog bootstrap</strong> — pre-built variants produce the initial frontier in one batch run, no LLM thinking required for the first phase. Start with what you already know before spending compute on what you don't.</p>
+</li>
+<li>
+<p><strong>Cheap stubs</strong> — an instrumented stub that logs reads/edits (~1 second per invocation) instead of running the real pipeline (~5 minutes). You iterate on the search structure, not the full pipeline, until the search structure has proven itself.</p>
+</li>
+<li>
+<p><strong>Parallel-able</strong> — each variant is independent. Run 4-8 in parallel. Don't serialize what could batch.</p>
+</li>
+<li>
+<p><strong>Auto-recording</strong> — the wrapper updates results and frontier state without manual bookkeeping. If recording is manual, you'll skip it when moving fast. If it's automatic, velocity and observability don't trade off.</p>
+</li>
+<li>
+<p><strong>Auto-frontier dominance check</strong> — the wrapper computes which variants are still on the frontier. No manual curation. The frontier reveals itself.</p>
+</li>
+</ol>
+<h2 id="build-sequence-pattern">Build sequence pattern</h2>
+<p>The velocity half implies a specific ordering for any new system:</p>
+<ol>
+<li>Build the cheapest possible stub of the expensive component</li>
+<li>Build the variant catalog (pre-built, no generation needed)</li>
+<li>Build the parallel runner</li>
+<li>Build the auto-recording wrapper</li>
+<li>Test one iteration manually</li>
+<li>Run the full catalog in parallel (Phase 1)</li>
+<li>Hand off to generative search (Phase 2)</li>
+<li>Stop when frontier saturates or external boundary</li>
+</ol>
+<p>Steps 1-5 are setup. Step 6 is where the frontier appears. Step 7 is where it walks. Step 8 is where it stops.</p>
+<h2 id="the-trust">The trust</h2>
+<p>"Trust the process and the iterations." This is not a platitude — it's an operational commitment. The velocity half says: you will learn more from running 12 cheap variants than from thinking carefully about which 1 variant to run. The information is in the iteration, not in the deliberation.</p>
+<p>Stop conditions are emergent (frontier saturates) or external (ethical / scope cut). Never pre-specified.</p>
+    </div>
+  </main>
+  <footer>
+    <div class="wrap">
+      <p>Pirsig · de Waal / Uexküll · Karpathy · Scott · AutoAgent</p>
+    </div>
+  </footer>
+</body>
+</html>

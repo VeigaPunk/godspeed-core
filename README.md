@@ -33,9 +33,9 @@ Godspeed is designed for a delegated-work setup where one agent architects the w
 
 The orchestrator role (in this repo's reference implementation, `the-judge`; the planner role is `the-planner`) is responsible for *architecting* the Pareto walk: naming the axes, shaping the variant catalog, deciding what is cheap enough to dispatch, and judging whether each returned move passes the filter. That role loads the full trilogy:
 
-- [`directive.md`](directive.md) — behavioral spec, stop conditions, anti-patterns
-- [`filter.md`](filter.md) — why the Pareto constraint is symmetric (and why it's not a weighted sum, lexicographic order, or Hegelian synthesis)
-- [`velocity.md`](velocity.md) — the build-sequence pattern (which stubs come first, when to parallelize, how auto-recording keeps observability from trading off against speed)
+- [`directive.md`](directive.html) — behavioral spec, stop conditions, anti-patterns
+- [`filter.md`](filter.html) — why the Pareto constraint is symmetric (and why it's not a weighted sum, lexicographic order, or Hegelian synthesis)
+- [`velocity.md`](velocity.html) — the build-sequence pattern (which stubs come first, when to parallelize, how auto-recording keeps observability from trading off against speed)
 
 The orchestrator needs the *why* behind each rule, because it chooses when a rule bends at the margin and when it doesn't.
 
@@ -47,9 +47,9 @@ This asymmetry is intentional. The orchestrator holds the frame; the subagents d
 
 ## Files
 
-- [`directive.md`](directive.md) — full behavioral directive (load into orchestrator)
-- [`filter.md`](filter.md) — Pareto-filter half, antimetabole analysis (orchestrator-level context)
-- [`velocity.md`](velocity.md) — iteration-velocity half, build-sequence pattern (orchestrator-level context)
+- [`directive.md`](directive.html) — full behavioral directive (load into orchestrator)
+- [`filter.md`](filter.html) — Pareto-filter half, antimetabole analysis (orchestrator-level context)
+- [`velocity.md`](velocity.html) — iteration-velocity half, build-sequence pattern (orchestrator-level context)
 
 ## Setup (Claude Code)
 

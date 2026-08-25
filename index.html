@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Godspeed Mode · Pareto-walking at iteration velocity</title>
+  <meta name="description" content="Godspeed Mode — a behavioral posture for AI agents that replaces goal-aiming with Pareto-walking at iteration velocity.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#070d10">
+  <meta name="color-scheme" content="dark">
+  <link rel="canonical" href="https://veigapunk.github.io/godspeed-core">
+  <meta property="og:title" content="Godspeed Mode · Pareto-walking at iteration velocity">
+  <meta property="og:description" content="Godspeed Mode — a behavioral posture for AI agents that replaces goal-aiming with Pareto-walking at iteration velocity.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://veigapunk.github.io/godspeed-core">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Godspeed Mode · Pareto-walking at iteration velocity">
+  <meta name="twitter:description" content="Godspeed Mode — a behavioral posture for AI agents that replaces goal-aiming with Pareto-walking at iteration velocity.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%A1%3C/text%3E%3C/svg%3E">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #070d10;
+      --panel: #0e171c;
+      --text: #c8d6db;
+      --muted: #8aa1a8;
+      --bright: #e8f1f4;
+      --accent: #5eb8b0;
+      --accent-2: #b9a0f2;
+      --rule: #14242b;
+      --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --font-sans: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --max-w: 44rem;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.65;
+      font-size: clamp(0.95rem, 0.9rem + 0.25vw, 1.05rem);
+    }
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      z-index: 100;
+      padding: 0.5rem 1rem;
+      background: var(--accent);
+      color: var(--bg);
+      text-decoration: none;
+      font-family: var(--font-mono);
+    }
+    .skip-link:focus { left: 1rem; top: 1rem; }
+    header, main, footer { padding: 1.25rem; }
+    .wrap { max-width: var(--max-w); margin: 0 auto; }
+    header .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .brand {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--bright);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      font-size: 1.1rem;
+    }
+    .brand span { color: var(--accent); }
+    nav { display: flex; gap: 1rem; flex-wrap: wrap; }
+    nav a { color: var(--muted); text-decoration: none; font-size: 0.9rem; }
+    nav a:hover { color: var(--accent); }
+    main .wrap {
+      background: var(--panel);
+      padding: clamp(1.25rem, 4vw, 2rem);
+      border-radius: 0.75rem;
+      border: 1px solid var(--rule);
+    }
+    h1, h2, h3, h4 { color: var(--bright); line-height: 1.25; margin-top: 1.8rem; margin-bottom: 0.75rem; }
+    h1 { font-size: clamp(1.8rem, 6vw, 2.75rem); margin-top: 0; }
+    h2 { font-size: clamp(1.25rem, 4vw, 1.5rem); }
+    h3 { font-size: 1.15rem; }
+    .lede { font-size: 1.1rem; color: var(--muted); max-width: 60ch; }
+    a { color: var(--accent); }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    code, pre { font-family: var(--font-mono); font-size: 0.9em; }
+    code { background: var(--rule); padding: 0.15rem 0.35rem; border-radius: 0.25rem; }
+    pre {
+      background: var(--rule);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    ul, ol { padding-left: 1.25rem; }
+    li { margin: 0.35rem 0; }
+    blockquote {
+      border-left: 3px solid var(--accent);
+      margin: 1rem 0;
+      padding: 0.25rem 0 0.25rem 1rem;
+      color: var(--muted);
+    }
+    hr { border: 0; border-top: 1px solid var(--rule); margin: 2rem 0; }
+    .cta { margin-top: 1.5rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.6rem 1rem;
+      border-radius: 0.4rem;
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      min-height: 44px;
+    }
+    .btn-primary { background: var(--accent); color: var(--bg); }
+    .btn-ghost { border: 1px solid var(--muted); color: var(--muted); }
+    footer { color: var(--muted); font-size: 0.85rem; text-align: center; }
+    table { border-collapse: collapse; margin: 1rem 0; width: 100%; }
+    th, td { border: 1px solid var(--rule); padding: 0.5rem; text-align: left; }
+    th { color: var(--bright); background: var(--rule); }
+    @media (max-width: 480px) {
+      header .wrap { flex-direction: column; align-items: flex-start; }
+      nav { gap: 0.75rem; }
+      main .wrap { padding: 1.25rem; }
+      h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header>
+    <div class="wrap">
+      <a class="brand" href="./">godspeed<span>/core</span></a>
+      <nav aria-label="Primary">
+        <a href="directive.html">Directive</a>
+        <a href="filter.html">Filter</a>
+        <a href="velocity.html">Velocity</a>
+        <a href="https://github.com/VeigaPunk/godspeed-core" rel="noopener noreferrer" target="_blank">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+    <div class="wrap">
+<h1 id="godspeed-mode">Godspeed Mode</h1>
+<p>A behavioral posture for AI agents that replaces goal-aiming with Pareto-walking at iteration velocity.</p>
+<p>Most one-sentence optimization instructions collapse under pressure: "make it faster" silently sacrifices quality, "make it right" silently sacrifices speed. Godspeed holds the tension instead of resolving it, and trusts cheap parallel iteration to find the frontier the operator couldn't pre-specify.</p>
+<h2 id="the-core-idea">The core idea</h2>
+<p>Godspeed is the composition of two independent ideas — either one alone is incomplete:</p>
+<ol>
+<li>
+<p><strong>Velocity</strong> — cheap stubs over expensive perfection, parallel batches over serial deliberation, catalog bootstrap before generative search. Trust the process and the iterations.</p>
+</li>
+<li>
+<p><strong>Filter</strong> — a symmetric Pareto constraint (antimetabole: <em>A without harming B; B without harming A</em>). Every candidate move must improve at least one named axis and harm none. No pre-specified goal; the frontier reveals itself by ceasing to move.</p>
+</li>
+</ol>
+<p>Together they produce <strong>directed motion without a pre-specified direction.</strong> The filter prevents regression, the velocity prevents stalling, and the frontier walks itself.</p>
+<h2 id="the-four-rules">The four rules</h2>
+<ol>
+<li>Name the axes.</li>
+<li>Iterate cheap, in parallel.</li>
+<li>Keep moves that improve any axis and harm none.</li>
+<li>Don't aim — let the frontier walk itself.</li>
+</ol>
+<h2 id="triggering">Triggering</h2>
+<p>Say <strong>godspeed</strong> (alone, or as a closer: <code>do X | godspeed</code>). The posture holds for the duration of the task.</p>
+<h2 id="two-tiers-orchestrator-vs-deployed-subagent">Two tiers: orchestrator vs. deployed subagent</h2>
+<p>Godspeed is designed for a delegated-work setup where one agent architects the walk and others execute moves in parallel. The two roles inherit different amounts of the spec:</p>
+<h3 id="orchestrator-and-planner-inherit-all-three-documents">Orchestrator (and planner) — inherit all three documents</h3>
+<p>The orchestrator role (in this repo's reference implementation, <code>the-judge</code>; the planner role is <code>the-planner</code>) is responsible for <em>architecting</em> the Pareto walk: naming the axes, shaping the variant catalog, deciding what is cheap enough to dispatch, and judging whether each returned move passes the filter. That role loads the full trilogy:</p>
+<ul>
+<li><a href="directive.html"><code>directive.md</code></a> — behavioral spec, stop conditions, anti-patterns</li>
+<li><a href="filter.html"><code>filter.md</code></a> — why the Pareto constraint is symmetric (and why it's not a weighted sum, lexicographic order, or Hegelian synthesis)</li>
+<li><a href="velocity.html"><code>velocity.md</code></a> — the build-sequence pattern (which stubs come first, when to parallelize, how auto-recording keeps observability from trading off against speed)</li>
+</ul>
+<p>The orchestrator needs the <em>why</em> behind each rule, because it chooses when a rule bends at the margin and when it doesn't.</p>
+<h3 id="deployed-subagents-inherit-only-the-directive">Deployed subagents — inherit only the directive</h3>
+<p>Subagents dispatched by the orchestrator for a specific task (write code, run a probe, review a diff, fetch context) inherit only the short behavioral directive — essentially the four rules plus the Pareto-filter acceptance test. They don't need the rhetorical provenance of antimetabole or the full build-sequence pattern; they need to know <em>which axes were named for this task</em>, <em>what counts as cheap here</em>, and <em>how to report the move so the orchestrator can filter it</em>.</p>
+<p>This asymmetry is intentional. The orchestrator holds the frame; the subagents do the work. Loading the full spec into every subagent would bloat context and invite each one to second-guess the axis choices that have already been made upstream.</p>
+<h2 id="files">Files</h2>
+<ul>
+<li><a href="directive.html"><code>directive.md</code></a> — full behavioral directive (load into orchestrator)</li>
+<li><a href="filter.html"><code>filter.md</code></a> — Pareto-filter half, antimetabole analysis (orchestrator-level context)</li>
+<li><a href="velocity.html"><code>velocity.md</code></a> — iteration-velocity half, build-sequence pattern (orchestrator-level context)</li>
+</ul>
+<h2 id="setup-claude-code">Setup (Claude Code)</h2>
+<p>Drop <code>directive.md</code> into the agent or skill definition that should adopt the posture. For an orchestrator role, also make <code>filter.md</code> and <code>velocity.md</code> reachable from that agent's context (e.g., as references the agent can load on demand). Trigger with the word <code>godspeed</code> in any session.</p>
+<h2 id="intellectual-lineage">Intellectual lineage</h2>
+<p>Pirsig (Quality recognized, not defined) · de Waal / Uexkull (umwelt over anthropocentric protocol) · Karpathy (overfit one batch first) · Scott (metis over high-modernist planning) · AutoAgent (emergent hill-climb over hand-tuned harness)</p>
+    </div>
+  </main>
+  <footer>
+    <div class="wrap">
+      <p>Pirsig · de Waal / Uexküll · Karpathy · Scott · AutoAgent</p>
+    </div>
+  </footer>
+</body>
+</html>

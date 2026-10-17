@@ -4,6 +4,8 @@ A behavioral posture for AI agents that replaces goal-aiming with Pareto-walking
 
 Most one-sentence optimization instructions collapse under pressure: "make it faster" silently sacrifices quality, "make it right" silently sacrifices speed. Godspeed holds the tension instead of resolving it, and trusts cheap parallel iteration to find the frontier the operator couldn't pre-specify.
 
+**Wiki:** [Devin wiki](https://app.devin.ai/org/veigapunk/wiki/VeigaPunk/godspeed-core?branch=main)
+
 ## The core idea
 
 Godspeed is the composition of two independent ideas — either one alone is incomplete:

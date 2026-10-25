@@ -28,8 +28,8 @@
       --accent: #5eb8b0;
       --accent-2: #b9a0f2;
       --rule: #14242b;
-      --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      --font-sans: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       --max-w: 44rem;
     }
     * { box-sizing: border-box; }
@@ -38,7 +38,7 @@
       margin: 0;
       background: var(--bg);
       color: var(--text);
-      font-family: var(--font-sans);
+      font-family: var(--font-mono);
       line-height: 1.65;
       font-size: clamp(0.95rem, 0.9rem + 0.25vw, 1.05rem);
     }
@@ -80,7 +80,7 @@
       border-radius: 0.75rem;
       border: 1px solid var(--rule);
     }
-    h1, h2, h3, h4 { color: var(--bright); line-height: 1.25; margin-top: 1.8rem; margin-bottom: 0.75rem; }
+    h1, h2, h3, h4 { color: var(--bright); font-family: var(--font-sans); line-height: 1.25; margin-top: 1.8rem; margin-bottom: 0.75rem; }
     h1 { font-size: clamp(1.8rem, 6vw, 2.75rem); margin-top: 0; }
     h2 { font-size: clamp(1.25rem, 4vw, 1.5rem); }
     h3 { font-size: 1.15rem; }
@@ -128,6 +128,7 @@
       nav { gap: 0.75rem; }
       main .wrap { padding: 1.25rem; }
       h1 { font-size: 1.8rem; }
+      table { display: block; overflow-x: auto; }
     }
   </style>
 </head>

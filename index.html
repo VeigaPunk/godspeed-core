@@ -8,11 +8,11 @@
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#070d10">
   <meta name="color-scheme" content="dark">
-  <link rel="canonical" href="https://veigapunk.github.io/godspeed-core">
+  <link rel="canonical" href="https://veigapunk.github.io/godspeed-core/">
   <meta property="og:title" content="Godspeed Mode · Pareto-walking at iteration velocity">
   <meta property="og:description" content="Godspeed Mode — a behavioral posture for AI agents that replaces goal-aiming with Pareto-walking at iteration velocity.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://veigapunk.github.io/godspeed-core">
+  <meta property="og:url" content="https://veigapunk.github.io/godspeed-core/">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Godspeed Mode · Pareto-walking at iteration velocity">
   <meta name="twitter:description" content="Godspeed Mode — a behavioral posture for AI agents that replaces goal-aiming with Pareto-walking at iteration velocity.">
@@ -28,8 +28,8 @@
       --accent: #5eb8b0;
       --accent-2: #b9a0f2;
       --rule: #14242b;
-      --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      --font-sans: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       --max-w: 44rem;
     }
     * { box-sizing: border-box; }
@@ -38,7 +38,7 @@
       margin: 0;
       background: var(--bg);
       color: var(--text);
-      font-family: var(--font-sans);
+      font-family: var(--font-mono);
       line-height: 1.65;
       font-size: clamp(0.95rem, 0.9rem + 0.25vw, 1.05rem);
     }
@@ -80,7 +80,7 @@
       border-radius: 0.75rem;
       border: 1px solid var(--rule);
     }
-    h1, h2, h3, h4 { color: var(--bright); line-height: 1.25; margin-top: 1.8rem; margin-bottom: 0.75rem; }
+    h1, h2, h3, h4 { color: var(--bright); font-family: var(--font-sans); line-height: 1.25; margin-top: 1.8rem; margin-bottom: 0.75rem; }
     h1 { font-size: clamp(1.8rem, 6vw, 2.75rem); margin-top: 0; }
     h2 { font-size: clamp(1.25rem, 4vw, 1.5rem); }
     h3 { font-size: 1.15rem; }
@@ -128,6 +128,7 @@
       nav { gap: 0.75rem; }
       main .wrap { padding: 1.25rem; }
       h1 { font-size: 1.8rem; }
+      table { display: block; overflow-x: auto; }
     }
   </style>
 </head>
@@ -172,11 +173,11 @@
 <h2 id="two-tiers-orchestrator-vs-deployed-subagent">Two tiers: orchestrator vs. deployed subagent</h2>
 <p>Godspeed is designed for a delegated-work setup where one agent architects the walk and others execute moves in parallel. The two roles inherit different amounts of the spec:</p>
 <h3 id="orchestrator-and-planner-inherit-all-three-documents">Orchestrator (and planner) — inherit all three documents</h3>
-<p>The orchestrator role (in this repo's reference implementation, <code>the-judge</code>; the planner role is <code>the-planner</code>) is responsible for <em>architecting</em> the Pareto walk: naming the axes, shaping the variant catalog, deciding what is cheap enough to dispatch, and judging whether each returned move passes the filter. That role loads the full trilogy:</p>
+<p>The orchestrator role is responsible for <em>architecting</em> the Pareto walk: naming the axes, shaping the variant catalog, deciding what is cheap enough to dispatch, and judging whether each returned move passes the filter. That role loads the full trilogy:</p>
 <ul>
-<li><a href="directive.html"><code>directive.md</code></a> — behavioral spec, stop conditions, anti-patterns</li>
-<li><a href="filter.html"><code>filter.md</code></a> — why the Pareto constraint is symmetric (and why it's not a weighted sum, lexicographic order, or Hegelian synthesis)</li>
-<li><a href="velocity.html"><code>velocity.md</code></a> — the build-sequence pattern (which stubs come first, when to parallelize, how auto-recording keeps observability from trading off against speed)</li>
+<li><a href="directive.html">Directive</a> — the four rules plus the no-questions, parallel tool-call posture</li>
+<li><a href="filter.html">Filter</a> — why the Pareto constraint is symmetric (and why it's not a weighted sum, lexicographic order, or Hegelian synthesis)</li>
+<li><a href="velocity.html">Velocity</a> — the build-sequence pattern (which stubs come first, when to parallelize, how auto-recording keeps observability from trading off against speed)</li>
 </ul>
 <p>The orchestrator needs the <em>why</em> behind each rule, because it chooses when a rule bends at the margin and when it doesn't.</p>
 <h3 id="deployed-subagents-inherit-only-the-directive">Deployed subagents — inherit only the directive</h3>
@@ -184,9 +185,9 @@
 <p>This asymmetry is intentional. The orchestrator holds the frame; the subagents do the work. Loading the full spec into every subagent would bloat context and invite each one to second-guess the axis choices that have already been made upstream.</p>
 <h2 id="files">Files</h2>
 <ul>
-<li><a href="directive.html"><code>directive.md</code></a> — full behavioral directive (load into orchestrator)</li>
-<li><a href="filter.html"><code>filter.md</code></a> — Pareto-filter half, antimetabole analysis (orchestrator-level context)</li>
-<li><a href="velocity.html"><code>velocity.md</code></a> — iteration-velocity half, build-sequence pattern (orchestrator-level context)</li>
+<li><a href="directive.html">Directive</a> — the short behavioral directive: the four rules plus the no-questions, parallel tool-call posture (what deployed subagents inherit)</li>
+<li><a href="filter.html">Filter</a> — Pareto-filter half, antimetabole analysis (orchestrator-level context)</li>
+<li><a href="velocity.html">Velocity</a> — iteration-velocity half, build-sequence pattern (orchestrator-level context)</li>
 </ul>
 <h2 id="setup-claude-code">Setup (Claude Code)</h2>
 <p>Drop <code>directive.md</code> into the agent or skill definition that should adopt the posture. For an orchestrator role, also make <code>filter.md</code> and <code>velocity.md</code> reachable from that agent's context (e.g., as references the agent can load on demand). Trigger with the word <code>godspeed</code> in any session.</p>

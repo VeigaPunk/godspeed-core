@@ -28,8 +28,8 @@
       --accent: #5eb8b0;
       --accent-2: #b9a0f2;
       --rule: #14242b;
-      --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      --font-sans: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       --max-w: 44rem;
     }
     * { box-sizing: border-box; }
@@ -38,7 +38,7 @@
       margin: 0;
       background: var(--bg);
       color: var(--text);
-      font-family: var(--font-sans);
+      font-family: var(--font-mono);
       line-height: 1.65;
       font-size: clamp(0.95rem, 0.9rem + 0.25vw, 1.05rem);
     }
@@ -80,7 +80,7 @@
       border-radius: 0.75rem;
       border: 1px solid var(--rule);
     }
-    h1, h2, h3, h4 { color: var(--bright); line-height: 1.25; margin-top: 1.8rem; margin-bottom: 0.75rem; }
+    h1, h2, h3, h4 { color: var(--bright); font-family: var(--font-sans); line-height: 1.25; margin-top: 1.8rem; margin-bottom: 0.75rem; }
     h1 { font-size: clamp(1.8rem, 6vw, 2.75rem); margin-top: 0; }
     h2 { font-size: clamp(1.25rem, 4vw, 1.5rem); }
     h3 { font-size: 1.15rem; }
@@ -105,6 +105,13 @@
       padding: 0.25rem 0 0.25rem 1rem;
       color: var(--muted);
     }
+    .callout {
+      border-left: 3px solid var(--accent);
+      margin: 1.5rem 0 0;
+      padding: 0.75rem 0 0.75rem 1rem;
+      color: var(--bright);
+      font-size: 0.9em;
+    }
     hr { border: 0; border-top: 1px solid var(--rule); margin: 2rem 0; }
     .cta { margin-top: 1.5rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }
     .btn {
@@ -128,6 +135,7 @@
       nav { gap: 0.75rem; }
       main .wrap { padding: 1.25rem; }
       h1 { font-size: 1.8rem; }
+      table { display: block; overflow-x: auto; }
     }
   </style>
 </head>
@@ -146,6 +154,7 @@
   </header>
   <main id="main" tabindex="-1">
     <div class="wrap">
+<h1 id="directive">Directive · Godspeed Mode</h1>
 <p>You are a Godspeed-enabled subagent.</p>
 <ol>
 <li><strong>Name the axes.</strong></li>
@@ -153,7 +162,7 @@
 <li><strong>Keep moves that improve any axis and harm none.</strong></li>
 <li><strong>Don't aim — let the frontier walk itself.</strong></li>
 </ol>
-<h2 id="immediately-stop-asking-clarifying-questions-execute-tool-calls-concurrently-in-large-batches-do-not-serialize-what-can-run-in-parallel-do-not-output-philosophical-reasoning-or-verbose-plans-act-directly-via-tool-calls">IMMEDIATELY STOP ASKING CLARIFYING QUESTIONS. Execute tool calls concurrently in large batches. Do not serialize what can run in parallel. Do not output philosophical reasoning or verbose plans. Act directly via tool calls.</h2>
+<p class="callout" id="immediately-stop-asking-clarifying-questions-execute-tool-calls-concurrently-in-large-batches-do-not-serialize-what-can-run-in-parallel-do-not-output-philosophical-reasoning-or-verbose-plans-act-directly-via-tool-calls">IMMEDIATELY STOP ASKING CLARIFYING QUESTIONS. Execute tool calls concurrently in large batches. Do not serialize what can run in parallel. Do not output philosophical reasoning or verbose plans. Act directly via tool calls.</p>
     </div>
   </main>
   <footer>
